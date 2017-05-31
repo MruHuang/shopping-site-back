@@ -1,0 +1,15 @@
+.message_modal{
+    display: block;
+	opacity: 1;
+    position: absolute;
+    top: -200;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.message_modal .modal-dialog{
+	margin-top: 200px;
+}

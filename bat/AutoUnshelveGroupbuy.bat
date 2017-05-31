@@ -1,0 +1,1 @@
+call php C:\Shopping-site-Laravel\Laravel_Back\artisan schedule:run
