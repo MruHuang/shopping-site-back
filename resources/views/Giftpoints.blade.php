@@ -13,7 +13,7 @@
 @section('content')
 <div class="panel panel-default" style="margin-top: 25px;">
     <div class="panel-heading">
-        <h2 class="panel-title">贈送積分</h2>
+        <h2 class="panel-title">贈送紅利點數</h2>
     </div>
     <div class="panel-body">
         <form>
@@ -22,8 +22,8 @@
         	<div class="panel panel-default">
 			  <div class="panel-body" style="padding: 10px;">
 			  	<h5>試算：</h5>
-			  	<h5 id="total_point" data-total_point="{{ $result }}">目前會員總積分：{{ $result }}</h5>
-			  	<h5 id="final_point" >優惠贈點後積分：{{ $result }}</h5>
+			  	<h5 id="total_point" data-total_point="{{ $result }}">目前會員總紅利點數：{{ $result }}</h5>
+			  	<h5 id="final_point" >優惠贈點後紅利點數：{{ $result }}</h5>
 			  </div>
 			</div>
 			<a id="give_gift" class="btn btn-primary">贈點</a>
@@ -63,7 +63,7 @@
             var gift_point =$(this).val();
             var total_point = $('#total_point').attr('data-total_point');
             var final_point = parseInt(total_point)+parseInt(total_point)*parseInt(gift_point)/100;
-            $('#final_point').text('優惠贈點後積分：'+parseInt(final_point));
+            $('#final_point').text('優惠贈點後紅利點數：'+parseInt(final_point));
         });
 
         $('#give_gift').click(function(event) {

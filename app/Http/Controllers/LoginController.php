@@ -46,26 +46,26 @@ class LoginController extends Controller
         ]);
     }
 
-    public function managerRegister(Request $Request){
-        //return $Request->all();
-        $message_text = "null";
+    // public function managerRegister(Request $Request){
+    //     //return $Request->all();
+    //     $message_text = "null";
 
-        try{
-            $manager = new MSQL();
-            $manager->managerAccount = $Request->input('manager_account');
-            $manager->managerPassword = bcrypt($Request->input('manager_password'));
-            $manager->managerPermission = 100;
-            $manager->managerEmail = $Request->input('manager_Email');
-            $manager->save();
+    //     try{
+    //         $manager = new MSQL();
+    //         $manager->managerAccount = $Request->input('manager_account');
+    //         $manager->managerPassword = bcrypt($Request->input('manager_password'));
+    //         $manager->managerPermission = 100;
+    //         $manager->managerEmail = $Request->input('manager_Email');
+    //         $manager->save();
 
-            $message_text = '註冊成功';
-        }catch(\Exception $e){
-            $message_text = '註冊失敗';
-            $message_text = $e;
-        }finally{
-            return View::make('managerRegister',[
-                'message_text'=>$message_text
-                ]);
-        }   
-    }
+    //         $message_text = '註冊成功';
+    //     }catch(\Exception $e){
+    //         $message_text = '註冊失敗';
+    //         $message_text = $e;
+    //     }finally{
+    //         return View::make('managerRegister',[
+    //             'message_text'=>$message_text
+    //             ]);
+    //     }   
+    // }
 }

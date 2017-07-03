@@ -18,13 +18,13 @@
     <div class="panel-body form-group">
         <form role="form" method="POST" action=" {{ route('UpdateIntegral') }}  ">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        	<label>購買轉換積分(%)</label>
+        	<label>購買轉換紅利點數(%)</label>
         	<input class="form-control" type="text" name="integral_proportion" id="integral_proportion" value="{{ $AllInformation['integralProportion'] }}">
         	<div class="panel panel-default">
 			  <div class="panel-body" style="padding: 10px;">
 			  	<h5>試算：</h5>
 			  	<h5>會員購買金額：200000</h5>
-			  	<h5 id="integral_trial">積分：{{ 2000*$AllInformation['integralProportion'] }}</h5>
+			  	<h5 id="integral_trial">紅利點數：{{ 2000*$AllInformation['integralProportion'] }}</h5>
 			  </div>
 			</div>
 			<button type="submit" class="btn btn-primary">確認</button>
@@ -72,7 +72,7 @@
     $(document).ready(function() {
         $('#integral_proportion').change(function(event) {
             var integral_proportion = $(this).val();
-            $('#integral_trial').text('積分：'+2000*parseInt(integral_proportion));
+            $('#integral_trial').text('紅利點數：'+2000*parseInt(integral_proportion));
         });
         $('#send_email_btn').click(function(event) {
             $('#loding_page').children().addClass('loading_modal_200');

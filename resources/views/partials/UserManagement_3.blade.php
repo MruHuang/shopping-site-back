@@ -4,7 +4,7 @@
         <th class="text-center"><a class="order_type" data-orderType = "memberName">會員名稱</a></th>
         <th class="text-center"><a class="order_type" data-orderType = "memberPhone">手機</a></th>
         <th class="text-center"><a class="order_type" data-orderType = "memberLineid">line-id</a></th>
-        <th class="text-center"><a class="order_type" data-orderType = "memberIntegral">積分</a></th>
+        <th class="text-center"><a class="order_type" data-orderType = "memberIntegral">紅利點數</a></th>
         <th class="text-center"><a class="order_type" data-orderType = "recommender">推薦人</a></th>
         <th class="text-center"><a class="order_type" data-orderType = "memberCancel">取消訂購次數</a></th>
         <th class="text-center order_type" ></th>
