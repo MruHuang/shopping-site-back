@@ -188,6 +188,11 @@ class CommodityManagementController extends Controller
         if($Request->input('commodity_video')!=null){
             $youtuber = $Request->input('commodity_video');
             $youtube_array = preg_split("/watch\?v=/",$youtuber);
+            if(count($youtube_array)!=2){
+                $delCookie = 0;
+                $message_text='影片格式錯誤';
+                return $this->AddCommodity($message_text,$delCookie);
+            }
             $commodityVideo = $youtube_array[0].'embed/'.$youtube_array[1];
         }else{
             $commodityVideo = null;
@@ -234,14 +239,17 @@ class CommodityManagementController extends Controller
 
     public function ShelvesCommodity(Request $Request)
     {
+        //return $Request->All();
         $page_type = $Request->input('page_type');
         $type = $Request->input('type');
         $commodityID = $Request->input('ID');
         $IsShelves = $Request->input('ShelvesState');
+        $message_text =null;
         try{
             $action = 'Shelves';
             $this->cd->ActionCommodity(
                 $action,
+                null,
                 null,
                 null,
                 null,

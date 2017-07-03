@@ -14,7 +14,7 @@
 @section('content')
 
 <div class="panel panel-default" style="margin-top: 25px;">
-    <form role="form" method="POST" id="GetUserData" action=" {{ route('GetUserData') }}">
+    <form role="form" method="POST" id="GetUserData" style="margin: 0px;" action=" {{ route('GetUserData') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" id="user_type" name="user_type" value="{{ $user_type }}">
             <input type="hidden" id="this_page" name="this_page" value="{{ $this_page }}">

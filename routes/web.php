@@ -11,15 +11,6 @@
 |
 */
 
-// Route::post('PostmanagerRegister',[
-// 	'as'=>'PostmanagerRegister',
-// 	'uses'=>'LoginController@managerRegister'
-// ]);
-
-// Route::get('managerRegister', function () {
-//     return view('ManagerRegister',['message_text'=>null]);
-// });
-
 Route::get('/', function () {
     return view('Login',['message_text'=>null]);
 });
@@ -38,6 +29,7 @@ Route::group(['prefix'=>'Login'],function(){
 		'uses'=>'LoginController@logout'
 	]);
 });
+
 Route::post('LoginPost',[
 	'as'=>'LoginPost',
 	'uses'=>'LoginController@login'
@@ -246,3 +238,14 @@ Route::group(['prefix'=>'order'],function(){
 	]);
 });
 
+Route::get('ManageManager',[
+	'as'=>'ManageManager',
+	'uses'=>function(){
+		return view('ManageManager',['message_text'=>null]);
+	}
+]);
+
+Route::post('PostmanagerRegister',[
+	'as'=>'PostmanagerRegister',
+	'uses'=>'ManagerManagementController@managerRegister'
+]);

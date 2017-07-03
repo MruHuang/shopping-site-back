@@ -33,7 +33,8 @@ class IntegralManagementController extends Controller
     }
 
     public function UpdateIntegralProportion(Request $Request)
-    {  
+    {
+        //return $Request->All();
         $integralProportion = $Request->input('integral_proportion');
         try{
             $result = $this->it->UpdateIntegralProportion(
@@ -42,6 +43,7 @@ class IntegralManagementController extends Controller
             $message_text = "修改成功";
         }catch(\Exception $e){
             $message_text = "修改失敗，請try again。";
+            $message_text = $e;
         }finally{
             return $this->GetInregral($message_text);
         }
