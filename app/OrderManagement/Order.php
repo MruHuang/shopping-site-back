@@ -99,6 +99,7 @@ class Order
                 }
                 $this->os->updateIsOrder($OrderIDArray[$i]['orderID'],$UpdateOrderData['totalPrice'],$UpdateOrderData['useIntegral'],$UpdateOrderData['freight']);
             }
+            $this->os->UpdateOrderDetailed($commodityID,$totalAmount,$finallyPrice);
             $result = '成功';
         }catch(\Exception $e){
             $result = '失敗';
@@ -121,11 +122,11 @@ class Order
         try{
             $freight = $promotion[0]['freight'];
             $freeFreight = $promotion[0]['freeFreight'];
-            $finallyPrice = $this->Static_GetfinallyPrice($totalAmount,$commodity);
+            $finallyPrice = self::Static_GetfinallyPrice($totalAmount,$commodity);
             for($i =0;$i< count($OrderIDArray); $i++){
                 $totalPrice = $OrderIDArray[$i]['commodityAmount']*$finallyPrice;
                 $OrderData = oSQL::Static_GetSingle($OrderIDArray[$i]['orderID']);
-                $UpdateOrderData = $this->Static_IsUseIntegral($totalPrice,$OrderData);
+                $UpdateOrderData = self::Static_IsUseIntegral($totalPrice,$OrderData);
                 $UpdateOrderData['freight'] = 0;
                 if($UpdateOrderData['totalPrice']<$freeFreight){
                     $UpdateOrderData['freight'] = $freight;
@@ -133,6 +134,7 @@ class Order
                 }
                 oSQL::Static_updateIsOrder($OrderIDArray[$i]['orderID'],$UpdateOrderData['totalPrice'],$UpdateOrderData['useIntegral'],$UpdateOrderData['freight']);
             }
+            oSQL::Static_UpdateOrderDetailed($commodityID,$totalAmount,$finallyPrice);
             $result = '成功';
         }catch(\Exception $e){
             $result = '失敗';

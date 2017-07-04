@@ -29,7 +29,7 @@ class AutoUnshelveGroupbuy
 	                    $action = 'unShelves';
 	                    $isShelves = 0;
 	                    OD::Static_SetGroupbuyRemind($groupbuyID);
-	                    OD::Static_updateIsOrder($groupbuyID);
+	                    $message_text = OD::Static_updateIsOrder($groupbuyID);
 	                    CD::Static_ActionGroupbuy(
 	                        $action,
 	                        null,
@@ -47,7 +47,7 @@ class AutoUnshelveGroupbuy
 	                        null,
 	                        $groupbuyID
 	                    );
-	                    $message_text = "更改成功";
+	                    //$message_text = "更改成功";
 	                }catch(\Exception $e){
 	                    $message_text = "更改失敗";
 	                    Log::info($e);
