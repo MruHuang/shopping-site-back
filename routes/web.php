@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 /*TEST GIT*/
+=======
+//Excel 測試//
+Route::get('excel/export','ExcelController@export');
+Route::get('excel/import','ExcelController@import');
+
+>>>>>>> master
 Route::get('/', function () {
     return view('Login',['message_text'=>null]);
 });
@@ -238,14 +245,19 @@ Route::group(['prefix'=>'order'],function(){
 	]);
 });
 
-Route::get('ManageManager',[
+Route::get('ManageManager/{type}',[
 	'as'=>'ManageManager',
-	'uses'=>function(){
-		return view('ManageManager',['message_text'=>null]);
+	'uses'=>function($type){
+		return view('ManageManager',['message_text'=>null,'type'=>$type]);
 	}
 ]);
 
 Route::post('PostmanagerRegister',[
 	'as'=>'PostmanagerRegister',
 	'uses'=>'ManagerManagementController@managerRegister'
+]);
+
+Route::post('PostPrintReport',[
+	'as'=>'PostPrintReport',
+	'uses'=>'ExcelController@PostPrintReport'
 ]);

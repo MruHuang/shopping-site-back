@@ -383,4 +383,13 @@ class OrderSQL
     public function MemberData($memberID){
         return $result = mbSQL::CheckMemberID($memberID)->get();
     }
+
+    public function UpdateOrderDetailed($commodityID,$totalAmount,$finallyPrice){
+        $result = oddSQL::GetOrderDetailed($commodityID)
+        ->update(['buyNum'=>$totalAmount,'buyPrice'=>$finallyPrice]);
+    } 
+    public static function Static_UpdateOrderDetailed($commodityID,$totalAmount,$finallyPrice){
+        $result = oddSQL::GetOrderDetailed($commodityID)
+        ->update(['buyNum'=>$totalAmount,'buyPrice'=>$finallyPrice]);
+    }
 }
