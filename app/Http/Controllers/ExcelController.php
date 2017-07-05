@@ -63,6 +63,7 @@ class ExcelController extends Controller
             $data = $this->pr->MemberIntegral($date_start);
             $excel_title = '會員紅利';
         }
+        return $data;
         $this->ExcelExport($data,$excel_title);
     }
 
