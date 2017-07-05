@@ -4,7 +4,7 @@
             <a href="{{ route('loginUserData',['user_type'=>'Apply']) }}" class="btn btn-primary shoppingCar_main_btn" style="width: 100%">用戶管理</a>
         </div>
         <div class="col-xs-2">
-            <a href="{{ route('ManageManager') }}" class="btn btn-primary shoppingCar_main_btn" style="width: 100%">管理員管理</a>
+            <a href="{{ route('ManageManager',['type'=>'ManagerManagement']) }}" class="btn btn-primary shoppingCar_main_btn" style="width: 100%">管理員管理</a>
         </div>
         <div class="col-xs-2">
             <a href="{{ route('AddCommodity') }}" class="btn btn-primary shoppingCar_main_btn" style="width: 100%">商品管理</a>

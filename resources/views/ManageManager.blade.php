@@ -15,25 +15,34 @@
 
 <div class="panel panel-default" style="margin-top: 25px;">
     <div class="panel-heading">
-        <h2 class="panel-title">管理者註冊</h2>
+        <h2 class="panel-title">管理者管理</h2>
     </div>
     <div class="panel-body">
-        <form role="form" method="POST" action=" {{ route('PostmanagerRegister') }}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <label>管理者帳號</label>
-            <input type="text" class="form-control" id ="manager_account" name="manager_account"  placeholder="輸入帳號">
-            <div style="margin-top: 10px;"></div>
-            <label>密碼</label>
-            <input type="password" class="form-control" id ="manager_password" name="manager_password" placeholder="輸入密碼">
-            <div style="margin-top: 10px;"></div>
-            <label>密碼再確認</label>
-            <input type="password" class="form-control" id ="manager_again_password" name="manager_again_password" placeholder="輸入密碼再確認">
-            <div style="margin-top: 10px;"></div>
-            <label>信箱</label>
-            <input type="text" class="form-control" id ="manager_Email" name="manager_Email" placeholder="輸入信箱 Ex：XXXX@XXXX.com">
-            <button class="btn btn-info register_button_style" style="float: right; margin-top: 20px;" type="submit" id="submit_btn" >送出</button>
-    	</form>
+    @if($type=='ManagerManagement')
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="{{ route('ManageManager',['type'=>'ManagerManagement']) }}">管理員註冊</a></li>
+          {{-- <li role="presentation"><a id="">管理員編輯</a></li> --}}
+          <li role="presentation"><a href="{{ route('ManageManager',['type'=>'PrintReport']) }}">列印報表</a></li>
+        </ul>
+        <div class="panel panel-default" style="border-top:none;">
+            <div class="panel-body">
+                @include('partials.ManagerManagement') 
+            </div>
+        </div>
     </div>
+    @elseif($type=='PrintReport')
+        <ul class="nav nav-tabs">
+          <li role="presentation"><a href="{{ route('ManageManager',['type'=>'ManagerManagement']) }}">管理員註冊</a></li>
+          {{-- <li role="presentation"><a id="">管理員編輯</a></li> --}}
+          <li role="presentation" class="active"><a href="{{ route('ManageManager',['type'=>'PrintReport']) }}">列印報表</a></li>
+        </ul>
+        <div class="panel panel-default" style="border-top:none;">
+            <div class="panel-body">
+                @include('partials.PrintReport') 
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 
 
