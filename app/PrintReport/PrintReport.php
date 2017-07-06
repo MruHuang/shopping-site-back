@@ -21,10 +21,11 @@ class PrintReport{
             $Name = $value->CMN == null ? ($value->LCN == null ? $value->GCN : $value->LCN) : ($value->CMN);
             $Price = $value->CMP == null ? ($value->LCP == null ? $value->GCP : $value->LCP) : ($value->CMP);
             array_push($array2, $Name); 
-            array_push($array2, $Price); 
             array_push($array2, $value->commodityArea); 
             array_push($array2, $value->commodityAmount); 
             array_push($array2, $value->buyPrice); 
+            array_push($array2, $Price); 
+            array_push($array2, $value->updated_at); 
             array_push($array2, $value->memberName); 
             array_push($array2, $value->recipient); 
             array_push($array2, $value->checkoutMethod); 
