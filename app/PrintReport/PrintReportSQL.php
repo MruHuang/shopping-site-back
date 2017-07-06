@@ -183,16 +183,6 @@ class PrintReportSQL{
         
     }
     public function SingleSalesDetails($date_start,$date_end){
-         
-        $result = oddSQL::join('commodity','commodity.commodityID','order_detailed.originalID')
-        ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
-        ->select(DB::raw('commodityName,SUM(order_detailed.commodityAmount) as NUM'))
-        ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
-        ->whereDate('merchandise_order.updated_at',">=",date($date_start))
-        ->whereDate('merchandise_order.updated_at',"<=",date($date_end))
-        ->where('merchandise_order.orderState','Carryout')
-        ->orderBy(DB::raw('SUM(order_detailed.commodityAmount) '),'desc')
-        ->get(); 
 
          $result = oddSQL::join('commodity','commodity.commodityID','order_detailed.originalID')
         ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
