@@ -22,7 +22,7 @@
         <input type="date" class="form-control" id ="date_end" name="date_end" min="2000-01-01" max="9999-12-13">
     </div>
     <div style="margin-top: 10px;"></div>
-    <button class="btn btn-info register_button_style" style="float: right; margin-top: 20px;" type="submit" id="submit_btn" >送出</button>
+    <button class="btn btn-info register_button_style" style="float: right; margin-top: 20px;" type="submit" id="submit_btn" >下載</button>
 </form>
 
 <script type="text/javascript">
