@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Excel 測試//
+
 Route::get('excel/export','ExcelController@export');
 Route::get('excel/import','ExcelController@import');
+
 
 Route::get('/', function () {
     return view('Login',['message_text'=>null]);
