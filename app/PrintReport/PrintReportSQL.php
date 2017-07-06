@@ -188,8 +188,19 @@ class PrintReportSQL{
         ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
         ->select(DB::raw('commodityName,SUM(order_detailed.commodityAmount) as NUM'))
         ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
-        ->whereBetween('merchandise_order.created_at',[$date_start,$date_end])
+        ->whereDate('merchandise_order.updated_at',">=",date($date_start))
+        ->whereDate('merchandise_order.updated_at',"<=",date($date_end))
         ->where('merchandise_order.orderState','Carryout')
+        ->orderBy(DB::raw('SUM(order_detailed.commodityAmount) '),'desc')
+        ->get(); 
+
+         $result = oddSQL::join('commodity','commodity.commodityID','order_detailed.originalID')
+        ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
+        ->select(DB::raw('commodityName,SUM(order_detailed.commodityAmount) as NUM '))
+        ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
+        ->whereDate('merchandise_order.updated_at',">=",date($date_start))
+        ->whereDate('merchandise_order.updated_at',"<=",date($date_end))
+        ->where('merchandise_order.orderState','Ready')
         ->orderBy(DB::raw('SUM(order_detailed.commodityAmount) '),'desc')
         ->get(); 
         return $result;
@@ -201,7 +212,8 @@ class PrintReportSQL{
         ->groupBy('member.memberID', 'member.memberAccount','member.memberName','member.memberPhone','member.memberEmail')
         ->select( 'member.memberName',DB::raw('SUM(order_detailed.commodityAmount) as Num'),DB::raw('SUM(buyPrice) as Price'),'member.memberPhone','member.memberEmail')
         ->orderby('Price',' Num')
-        ->whereBetween('merchandise_order.created_at',[$date_start,$date_end])
+        ->whereDate('merchandise_order.created_at',">=",date($date_start))
+        ->whereDate('merchandise_order.created_at',"<=",date($date_end))
         ->get();
         return $result;
     }
