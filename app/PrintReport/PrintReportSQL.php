@@ -208,7 +208,7 @@ class PrintReportSQL{
     public function MemberIntegral($date){
         $result = mbSQL::
         leftjoin('member as MB','MB.memberID','member.recommender')
-        ->select("member.memberName ,member.created_at ,MB.memberName as recommenderName ,member.memberIntegral ,member.memberUseIntegral ,member.memberIntegral")
+        ->select("member.memberName", "member.created_at","MB.memberName as recommenderName","member.memberIntegral","member.memberUseIntegral","member.memberIntegral")
         ->orderBy('member.memberIntegral','desc')
         ->get()
        ; 
