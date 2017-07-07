@@ -82,7 +82,7 @@ class PrintReportSQL{
 
         return $result;
     }
-    public function DailyShipmentsPerson($date){
+    public function DailyShipmentsCommodity($date){
         $result = oddSQL::join('commodity','commodity.commodityID','order_detailed.originalID')
         ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
         ->select(DB::raw('commodityName,SUM(order_detailed.commodityAmount) as NUM  ,
@@ -96,7 +96,7 @@ class PrintReportSQL{
         ->get(); 
         return $result;
     }
-    public function DailyShipmentsCommodity($date){
+    public function DailyShipmentsPerson($date){
          $joinMO = DB::raw('(
             SELECT 
                 orderID,orderState, member.memberName, member.memberPhone, recipient, merchandise_order.deliveryAdd, merchandise_order.updated_at
