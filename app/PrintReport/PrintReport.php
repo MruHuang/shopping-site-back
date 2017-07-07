@@ -34,10 +34,10 @@ class PrintReport{
         return $result;
     }
     //每日出貨明細(物)
-    public function DailyShipmentsPerson($date){
-        $cellData = $this->ps->DailyShipmentsPerson($date);
+    public function DailyShipmentsCommodity($date){
+        $cellData = $this->ps->DailyShipmentsCommodity($date);
         $result = [
-            ['商品名稱','出貨數量','出貨日期','團購數量','一般數量','限時數量'],
+            ['商品名稱','出貨數量','出貨日期','限時數量','一般數量','團購數量'],
         ]; 
         foreach ($cellData as $key => $value ){
             $array2 = [];
@@ -52,8 +52,8 @@ class PrintReport{
         return $result;
     }
     //每日出貨明細(人)
-    public function DailyShipmentsCommodity($date){
-        $cellData = $this->ps->DailyShipmentsCommodity($date);
+    public function DailyShipmentsPerson($date){
+        $cellData = $this->ps->DailyShipmentsPerson($date);
         $result = [
             ['訂購人名稱','付款日期','收件人','手機','地址','一般商品','團購商品','限時商品','購買數量'],
         ]; 
