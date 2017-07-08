@@ -190,7 +190,7 @@ class PrintReportSQL{
         ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
         ->whereDate('merchandise_order.updated_at',">=",date($date_start))
         ->whereDate('merchandise_order.updated_at',"<=",date($date_end))
-        ->where('merchandise_order.orderState','Ready')
+        ->where('merchandise_order.orderState','Carryout')
         ->orderBy(DB::raw('SUM(order_detailed.commodityAmount) '),'desc')
         ->get(); 
         return $result;
