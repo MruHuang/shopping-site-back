@@ -186,6 +186,14 @@ class CommodityManagementController extends Controller
         }
 
         if($Request->input('commodity_video')!=null){
+            // $youtuber = $Request->input('commodity_video');
+            // $youtube_array = preg_split("/watch\?v=/",$youtuber);
+            // if(count($youtube_array)!=2){
+            //     $delCookie = 0;
+            //     $message_text='影片格式錯誤';
+            //     return $this->AddCommodity($message_text,$delCookie);
+            // }
+            // $commodityVideo = $youtube_array[0].'embed/'.$youtube_array[1];
             $youtuber = $Request->input('commodity_video');
             $youtube_array = preg_split("/watch\?v=/",$youtuber);
             if(count($youtube_array)!=2){
@@ -193,7 +201,8 @@ class CommodityManagementController extends Controller
                 $message_text='影片格式錯誤';
                 return $this->AddCommodity($message_text,$delCookie);
             }
-            $commodityVideo = $youtube_array[0].'embed/'.$youtube_array[1];
+            $text = substr($youtube_array[1],0,11);
+            $commodityVideo = $youtube_array[0].'embed/'.$text;
         }else{
             $commodityVideo = null;
         }
@@ -310,10 +319,17 @@ class CommodityManagementController extends Controller
 
         $youtuber = $Request->input('commodity_video');
         $youtube_array = preg_split("/watch\?v=/",$youtuber);
-        if(count($youtube_array)!=1){
-            $commodity_video = $youtube_array[0].'embed/'.$youtube_array[1];
+        if(count($youtube_array)==2){
+            $text = substr($youtube_array[1],0,11);
+            $commodity_video = $youtube_array[0].'embed/'.$text;
         }else{
-            $commodity_video = $youtube_array[0];
+            if(count(preg_split("/embed/",$youtuber))==2){
+                 $commodity_video = $youtuber;
+            }else{
+                $delCookie = 0;
+                $message_text='影片格式錯誤';
+                return $this->GetCommodity($page_type,$type,$message_text);
+            }
         }
         try{
             $action = 'update';
