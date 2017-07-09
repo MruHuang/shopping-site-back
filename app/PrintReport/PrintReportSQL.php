@@ -198,7 +198,7 @@ class PrintReportSQL{
         $result = mbSQL::
         leftjoin('merchandise_order','merchandise_order.memberID','member.memberID')
         //->leftjoin('order_detailed','merchandise_order.orderID','order_detailed.orderID')
-        ->where('merchandise_order.orderClass', '<>', 'Cancel')
+        ->where('merchandise_order.orderState', 'Carryout')
         ->groupBy('member.memberID','member.memberName','member.memberPhone','member.memberEmail')
         ->select( 'member.memberName',DB::raw('COUNT(member.memberID) as Num'),DB::raw('SUM(totalPrice) as Price'),'member.memberPhone','member.memberEmail')
         ->orderby('Price',' Num')
