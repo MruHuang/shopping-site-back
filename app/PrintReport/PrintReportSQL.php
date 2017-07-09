@@ -177,10 +177,9 @@ class PrintReportSQL{
         $result = odSQL::
         where('orderState','Check')
         ->select('updated_at', 'recipient', 'orderID', 'totalPrice', 'checkoutMethod', 'moneyTransferFN')
-        ->whereDate('updated_at',"=",date($date))
+        ->whereDate('updated_at',"<=",date($date))
         ->get();
         return $result;
-        
     }
     public function SingleSalesDetails($date_start,$date_end){
 
@@ -198,9 +197,10 @@ class PrintReportSQL{
     public function VIP($date_start,$date_end){
         $result = mbSQL::
         leftjoin('merchandise_order','merchandise_order.memberID','member.memberID')
-        ->leftjoin('order_detailed','merchandise_order.orderID','order_detailed.orderID')
-        ->groupBy('member.memberID', 'member.memberAccount','member.memberName','member.memberPhone','member.memberEmail')
-        ->select( 'member.memberName',DB::raw('SUM(order_detailed.commodityAmount) as Num'),DB::raw('SUM(buyPrice) as Price'),'member.memberPhone','member.memberEmail')
+        //->leftjoin('order_detailed','merchandise_order.orderID','order_detailed.orderID')
+        ->where('merchandise_order.orderClass', '<>', 'Cancel')
+        ->groupBy('member.memberID','member.memberName','member.memberPhone','member.memberEmail')
+        ->select( 'member.memberName',DB::raw('COUNT(member.memberID) as Num'),DB::raw('SUM(totalPrice) as Price'),'member.memberPhone','member.memberEmail')
         ->orderby('Price',' Num')
         ->whereDate('merchandise_order.created_at',">=",date($date_start))
         ->whereDate('merchandise_order.created_at',"<=",date($date_end))
