@@ -60,7 +60,7 @@ class PrintReport{
         foreach ($cellData as $key => $value ){
             $array2 = [];
             array_push($array2, $value->memberName); 
-            array_push($array2, $value->ShipmentsDate); 
+            array_push($array2, $date); 
             array_push($array2, $value->recipient); 
             array_push($array2, $value->memberPhone); 
             array_push($array2, $value->deliveryAdd); 
