@@ -55,7 +55,7 @@ class PrintReport{
     public function DailyShipmentsPerson($date){
         $cellData = $this->ps->DailyShipmentsPerson($date);
         $result = [
-            ['訂購人名稱','付款日期','收件人','手機','地址','一般商品','限時商品','團購商品','購買數量'],
+            ['訂購人名稱','出貨日期','收件人','手機','地址','一般商品','限時商品','團購商品','購買數量'],
         ]; 
         foreach ($cellData as $key => $value ){
             $array2 = [];
