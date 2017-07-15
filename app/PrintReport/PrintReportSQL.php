@@ -90,7 +90,7 @@ class PrintReportSQL{
              SUM(case when [Shopping_site].[dbo].order_detailed.[commodityArea]=\'commodity\'then[order_detailed].[commodityAmount] else 0 end) as CNum,
              SUM(case when [Shopping_site].[dbo].order_detailed.[commodityArea]=\'groupbuy\'then[order_detailed].[commodityAmount] else 0 end)as GNum'))
         ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
-        ->whereDate('merchandise_order.updated_at',"=",date($date))
+        ->whereDate('merchandise_order.updated_at',"<=",date($date))
         ->where('merchandise_order.orderState','Ready')
         ->orderBy(DB::raw('SUM(order_detailed.commodityAmount) '),'desc')
         ->get(); 
@@ -147,7 +147,7 @@ class PrintReportSQL{
             }
         )
         ->where('MO.orderState','Ready')
-        ->whereDate(DB::raw('SUBSTRING(FORMAT(MO.updated_at, \'yyyy-MM-dd HH:mm\'), 1, 11)'),date($date))
+        ->whereDate(DB::raw('SUBSTRING(FORMAT(MO.updated_at, \'yyyy-MM-dd HH:mm\'), 1, 11)'),"<=",date($date))
         ->groupby(
             'MO.memberName'
             ,DB::raw('SUBSTRING(FORMAT(MO.updated_at, \'yyyy-MM-dd HH:mm\'), 1, 11) ')
