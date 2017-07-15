@@ -3,15 +3,19 @@
 namespace App\OrderManagement;
 
 use App\OrderManagement\OrderSQL as oSQL;
+use App\CreditCard\CreditCardCancel as CCC;
 use App\Mail\MailSent as Email;
+use Log;
 class Order
 {
     //
     private $os;
     private $mailer;
-    public function __construct(oSQL $os,Email $mailer){
+    private $ccc;
+    public function __construct(oSQL $os,Email $mailer,CCC $ccc){
         $this->os = $os;
         $this->mailer = $mailer;
+        $this->ccc = $ccc;
     }
     
     public function OrderData(
@@ -41,14 +45,22 @@ class Order
         $orderID,
         $action_type
     ){  
-        if($action_type == 'Unpaid')
+        if($action_type == 'Unpaid'){
             $result = $this->os->UpdateUnpaidOrder($orderID);
-        else if($action_type == 'Check')
+            if($result== true) $message_text =  "訂單狀況更新成功";
+        }
+        else if($action_type == 'Check'){
             $result = $this->os->UpdateCheckOrder($orderID);
-        else if($action_type == 'Ready')
+            if($result== true) $message_text =  "訂單狀況更新成功";
+        }
+        else if($action_type == 'Ready'){
             $result = $this->os->UpdateReadyOrder($orderID);
-        else if($action_type == 'Delivery')
+            if($result== true) $message_text =  "訂單狀況更新成功";
+        }
+        else if($action_type == 'Delivery'){
             $result = $this->os->UpdateDeliveryOrder($orderID);
+            if($result== true) $message_text =  "訂單狀況更新成功";
+        }
         else if($action_type == 'Carryout'){
             //增加積分//
             $singleOrderData = $this->os->GetSingle($orderID);
@@ -61,18 +73,24 @@ class Order
             //修改訂單狀態//
             
             $result = $this->os->UpdateCarryoutOrder($orderID);
-
+            if($result== true) $message_text =  "訂單狀況更新成功";
         }
-        else if($action_type == 'Cancel')
-            $result = $this->os->UpdateCancelOrder($orderID);
-            if($result==true){
-                $singleOrderData = $this->os->GetSingle($orderID);
-                $memberData = $this->os->GetMemberID($singleOrderData[0]['memberID']);
-                $memberCancel = (int)$memberData[0]['memberCancel']+1;
-                $result = $this->os->UpdateMemberCancel($singleOrderData[0]['memberID'],$memberCancel);
+        else if($action_type == 'Cancel'){
+            $OrderData = $this->os->GetSingle($orderID);
+            if($OrderData[0]['checkoutMethod'] == 'CreditCard'){
+                $message_text =  $this->ccc->checkOrder($OrderData[0]['randomNum']);
+            }else{
+                $result = $this->os->UpdateCancelOrder($orderID);
+                if($result==true){
+                    $singleOrderData = $this->os->GetSingle($orderID);
+                    $memberData = $this->os->GetMemberID($singleOrderData[0]['memberID']);
+                    $memberCancel = (int)$memberData[0]['memberCancel']+1;
+                    $result = $this->os->UpdateMemberCancel($singleOrderData[0]['memberID'],$memberCancel);
+                }
+                $message_text =  "訂單狀況更新成功";
             }
-
-        return $result;
+        }
+        return $message_text;
     }
 
     public function updateIsOrder($commodityID){
