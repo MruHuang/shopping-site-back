@@ -79,4 +79,15 @@ class merchandise_order extends Model
         ->offset($StartNumber - 1)
         ->limit($EndNumber - $StartNumber + 1);
     }
+
+    public function scopeCheckONO(
+    	$query,
+    	$ONO
+	){
+    	$query->where('randomNum', $ONO);
+    }
+
+    public function scopeCheckoutMethodCreditCard($query){
+    	$query->where('checkoutMethod','CreditCard');
+    }
 }

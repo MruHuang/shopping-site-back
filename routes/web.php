@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('excel/export','ExcelController@export');
-Route::get('excel/import','ExcelController@import');
+// Route::get('excel/export','ExcelController@export');
+// Route::get('excel/import','ExcelController@import');
 
 
 Route::get('/', function () {
@@ -216,7 +216,7 @@ Route::group(['prefix'=>'Inregral'],function(){
 });
 
 Route::group(['prefix'=>'order'],function(){
-	Route::get('GetOrder/{type}/{this_page?}/{order_type?}', [
+	Route::get('GetOrder/{type}/{this_page?}/{order_type?}/{message_text?}', [
 		'as' => 'GetOrder',
 		'uses' => 'OrderManagementController@GetOrder'
 	]);
