@@ -155,35 +155,30 @@
                                 <option value="Ready">待交貨</option>
                                 <option value="Delivery">已送貨</option>
                                 <option value="Carryout">完成交易</option>
-                                <option value="Cancel">取消訂單</option>
                             @elseif($AllInformation[$i]['orderState']=='Check')
                                 <option value="Unpaid">未付款</option>
                                 <option value="Check" selected>待確認付款</option>
                                 <option value="Ready">待交貨</option>
                                 <option value="Delivery">已送貨</option>
                                 <option value="Carryout">完成交易</option>
-                                <option value="Cancel">取消訂單</option>
                             @elseif($AllInformation[$i]['orderState']=='Ready')
                                 <option value="Unpaid">未付款</option>
                                 <option value="Check">待確認付款</option>
                                 <option value="Ready" selected>待交貨</option>
                                 <option value="Delivery">已送貨</option>
                                 <option value="Carryout">完成交易</option>
-                                <option value="Cancel">取消訂單</option>
                             @elseif($AllInformation[$i]['orderState']=='Delivery')
                                 <option value="Unpaid">未付款</option>
                                 <option value="Check">待確認付款</option>
                                 <option value="Ready">待交貨</option>
                                 <option value="Delivery" selected>已送貨</option>
                                 <option value="Carryout">完成交易</option>
-                                <option value="Cancel">取消訂單</option>
                             @elseif($AllInformation[$i]['orderState']=='Carryout')
                                 <option value="Unpaid">未付款</option>
                                 <option value="Check">待確認付款</option>
                                 <option value="Ready">待交貨</option>
                                 <option value="Delivery">已送貨</option>
                                 <option value="Carryout" selected>完成交易</option>
-                                <option value="Cancel">取消訂單</option>
                             @else
                             	<option value="Unpaid">未付款</option>
                                 <option value="Check">待確認付款</option>

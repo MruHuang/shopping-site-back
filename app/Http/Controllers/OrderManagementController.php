@@ -61,16 +61,15 @@ class OrderManagementController extends Controller
         //         $action_type
         //     );
         try{
-            $this->od->UpdateOrder(
+            $message_text = $this->od->UpdateOrder(
                 $orderID,
                 $action_type
             );
-            $message_text = "訂單狀況更新成功";
         }catch(\Exception $e){
             $message_text = "訂單狀況更新失敗";
-            //$message_text = $e;
+            $message_text = $e;
         }finally{
-            //return $e;
+            // return $e;
             return $this->GetOrder($order_type,$this_page,$order_orderType,$message_text,null,null);
         }
     }
