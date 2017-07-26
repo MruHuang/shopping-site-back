@@ -318,17 +318,21 @@ class CommodityManagementController extends Controller
         $commodity_introduction =  $Request->input('commodity_introduction');
 
         $youtuber = $Request->input('commodity_video');
-        $youtube_array = preg_split("/watch\?v=/",$youtuber);
-        if(count($youtube_array)==2){
-            $text = substr($youtube_array[1],0,11);
-            $commodity_video = $youtube_array[0].'embed/'.$text;
+        if($youtuber==""){
+            $commodity_video = null;
         }else{
-            if(count(preg_split("/embed/",$youtuber))==2){
-                 $commodity_video = $youtuber;
+            $youtube_array = preg_split("/watch\?v=/",$youtuber);
+            if(count($youtube_array)==2){
+                $text = substr($youtube_array[1],0,11);
+                $commodity_video = $youtube_array[0].'embed/'.$text;
             }else{
-                $delCookie = 0;
-                $message_text='影片格式錯誤';
-                return $this->GetCommodity($page_type,$type,$message_text);
+                if(count(preg_split("/embed/",$youtuber))==2){
+                    $commodity_video = $youtuber;
+                }else{
+                    $delCookie = 0;
+                    $message_text='影片格式錯誤';
+                    return $this->GetCommodity($page_type,$type,$message_text);
+                }
             }
         }
         try{
