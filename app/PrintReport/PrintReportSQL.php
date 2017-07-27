@@ -86,9 +86,9 @@ class PrintReportSQL{
         $result = oddSQL::join('commodity','commodity.commodityID','order_detailed.originalID')
         ->join('merchandise_order','merchandise_order.orderID','order_detailed.orderID')
         ->select(DB::raw('commodityName,SUM(order_detailed.commodityAmount) as NUM  ,
-             SUM(case when [Shopping_site].[dbo].order_detailed.[commodityArea]=\'timelimit\'then[order_detailed].[commodityAmount] else 0 end) as TNum,
-             SUM(case when [Shopping_site].[dbo].order_detailed.[commodityArea]=\'commodity\'then[order_detailed].[commodityAmount] else 0 end) as CNum,
-             SUM(case when [Shopping_site].[dbo].order_detailed.[commodityArea]=\'groupbuy\'then[order_detailed].[commodityAmount] else 0 end)as GNum'))
+             SUM(case when order_detailed.commodityArea=\'timelimit\' then order_detailed.commodityAmount else 0 end) as TNum,
+             SUM(case when order_detailed.commodityArea=\'commodity\' then order_detailed.commodityAmount else 0 end) as CNum,
+             SUM(case when order_detailed.commodityArea=\'groupbuy\' then order_detailed.commodityAmount else 0 end)as GNum'))
         ->groupBy('order_detailed.originalID','commodity.commodityID','commodity.commodityName')
         ->whereDate('merchandise_order.updated_at',"<=",date($date))
         ->where('merchandise_order.orderState','Ready')
@@ -147,7 +147,7 @@ class PrintReportSQL{
             }
         )
         ->where('MO.orderState','Ready')
-        ->whereDate(DB::raw('SUBSTRING(FORMAT(MO.updated_at, \'yyyy-MM-dd HH:mm\'), 1, 11)'),"<=",date($date))
+        ->whereDate('MO.updated_at',"<=",date($date))
         ->groupby(
             'MO.memberName'
             ,DB::raw('SUBSTRING(FORMAT(MO.updated_at, \'yyyy-MM-dd HH:mm\'), 1, 11) ')
