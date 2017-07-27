@@ -27,7 +27,7 @@
                           <input type="hidden" name="page_type" value="{{ $type }}">
                           <input type="hidden" name="type" value="{{ $Area }}">
                           <input type="hidden" name="ID" value="{{ $AllInformation[$i]['commodityID'] }}">
-                          <input type="hidden" name="ShelvesState" value="false">
+                          <input type="hidden" name="ShelvesState" value="0">
                         </form>
                     @else
                         <input class="nuShelves" type="checkbox"/>

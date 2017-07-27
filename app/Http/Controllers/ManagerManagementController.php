@@ -32,7 +32,7 @@ class ManagerManagementController extends Controller
                 $message_text = '註冊失敗';
                 $message_text = $e;
             }finally{
-                return View::make('ManageManager',['message_text'=>$message_text]);
+                return View::make('ManageManager',['type'=>'ManagerManagement','message_text'=>$message_text]);
             }  
         } 
     }
