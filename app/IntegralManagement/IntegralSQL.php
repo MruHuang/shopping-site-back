@@ -17,7 +17,7 @@ class IntegralSQL
         $freight,
         $freeFreight
     ){
-        ptSQL::where('ID',ptSQL::find(2)->ID)->update([
+        ptSQL::where('ID',ptSQL::find(3)->ID)->update([
             'integralProportion'=> $integralProportion,
             'freight'=> $freight,
             'freeFreight'=> $freeFreight
@@ -28,7 +28,7 @@ class IntegralSQL
 
     public function UpdateIntegralProportion($integralProportion)
     {
-        ptSQL::where('ID',ptSQL::find(2)->ID)->update([
+        ptSQL::where('ID',ptSQL::find(3)->ID)->update([
             'integralProportion'=> $integralProportion
         ]);
         return true;
@@ -37,7 +37,7 @@ class IntegralSQL
 
     public function UpdateIntegralFreight($freight,$freeFreight)
     {
-        ptSQL::where('ID',ptSQL::find(2)->ID)->update([
+        ptSQL::where('ID',ptSQL::find(3)->ID)->update([
             'freight'=>$freight,
             'freeFreight'=>$freeFreight
         ]);
@@ -46,7 +46,7 @@ class IntegralSQL
     }
 
     public function UpdateRemittance($RemittanceAccount){
-        ptSQL::where('ID',ptSQL::find(2)->ID)->update([
+        ptSQL::where('ID',ptSQL::find(3)->ID)->update([
             'RemittanceAccount'=> $RemittanceAccount
         ]);
         return true;
@@ -55,5 +55,12 @@ class IntegralSQL
     public function GetMemberData(){
         $result = memberSQL::GetAllMember()->get();
         return $result;
+    }
+
+    public function UpdateLatestNews($new_content){
+        ptSQL::where('ID',ptSQL::find(3)->ID)->update([
+            'latest_news'=> $new_content
+        ]);
+        return true;
     }
 }

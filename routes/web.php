@@ -213,6 +213,11 @@ Route::group(['prefix'=>'Inregral'],function(){
 		'as'=>'SendAllEmail',
 		'uses'=>'IntegralManagementController@SendAllEmail'
 	]);
+
+	Route::post('LatestNews',[
+		'as'=>'LatestNews',
+		'uses'=>'IntegralManagementController@LatestNews'
+	]);
 });
 
 Route::group(['prefix'=>'order'],function(){
