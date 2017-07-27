@@ -16,7 +16,7 @@ class IntegralManagementController extends Controller
     }
     public function GetInregral($message_text=null){
         $result = $this->it->GetIntegral();
-        //return $result;
+        // return $result;
         return View::make('PreferentialManagement',['AllInformation'=>$result[0],'message_text'=>$message_text]);
     }
     public function UpdateIntegral(
@@ -98,5 +98,18 @@ class IntegralManagementController extends Controller
             //return $message_text;
             return $this->GetInregral($message_text);
         }
+    }
+    public function LatestNews(Request $Resquest){
+        $new_content = $Resquest->input('new_content');
+        $message_text = null;
+        // return $new_content;
+        try{
+            $result = $this->it->UpdateLatestNews($new_content);
+            $message_text = "修改成功";
+        }catch(\Exception $e){
+            $message_text = "修改失敗，請try again。";
+            $message_text = $e;
+        }
+        return $this->GetInregral($message_text);
     }
 }

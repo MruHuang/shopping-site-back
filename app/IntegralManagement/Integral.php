@@ -62,4 +62,9 @@ class Integral
         }
         return true;
     }
+
+    public function UpdateLatestNews($new_content){
+        $result = $this->isql->UpdateLatestNews($new_content);
+        return $result;
+    }
 }

@@ -62,6 +62,16 @@
         </form>
     </div>
 
+    <div class="panel-body">
+        <h2 style="font-weight: bolder;">最新公告</h2>
+        <form role="form" method="POST" action=" {{ route('LatestNews') }}  ">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <label>公告內容</label>
+            <textarea class="form-control" rows='3' name="new_content">{{ $AllInformation['latest_news'] }}</textarea>
+            <button class="btn btn-primary" type="submit" style="margin-top: 20px;">確認</button>
+        </form>
+    </div>
+
 </div>
 
 <div id="loding_page" style="display: none;">
