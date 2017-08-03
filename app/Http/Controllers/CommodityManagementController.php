@@ -591,6 +591,14 @@ class CommodityManagementController extends Controller
             $message_text = "下架日期不可為空";
             return $this->GetCommodity($page_type,$type,$message_text,$message_data);
         }
+        if($limitedPrice==null){
+            $message_text = "限時限量價格不可為空";
+            return $this->GetCommodity($page_type,$type,$message_text,$message_data);
+        }
+        if($limitedAmount==null){
+            $message_text = "限時限量數量不可為空";
+            return $this->GetCommodity($page_type,$type,$message_text,$message_data);
+        }
 
         if($post_type == 'Shelves'){
             $action = 'insert';
