@@ -534,7 +534,7 @@ class CommodityManagementController extends Controller
                 );
                 $message_text = "新增成功";
             }catch(\Exception $e){
-                $message_text = "失敗";
+                $message_text = "新增失敗";
                 //$message_text = $e;
             }finally{
                 //return $message_text;
