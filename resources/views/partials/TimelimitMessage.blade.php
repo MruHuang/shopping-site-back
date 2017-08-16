@@ -20,12 +20,12 @@
                     <input type="text" class="form-control" value="{{ $message_data['commodiyName'] }}" disabled>
                   </div>
                   <div class="form-group">
-                    <label>限時限量價格</label>
+                    <label>限時限量價格(必填)</label>
                     <input type="text" class="form-control" name="limited_price" value="{{ $message_data['limitedPrice'] }}"  placeholder="輸入限時限量價格">
                   </div>
 
                   <div class="form-group">
-                    <label>下架時間</label>
+                    <label>下架時間(必填)</label>
                      @if($message_data['offTime']!=null)
                           <?php 
                               $time = preg_split("/ /",$message_data['offTime']);
@@ -37,12 +37,17 @@
                   </div>
 
                   <div class="form-group">
-                    <label>限時數量</label>
+                    <label>限時數量(必填)</label>
                     <input type="text" class="form-control" name="limited_amount" value="{{ $message_data['limitedAmount'] }}" placeholder="輸入數量">
                   </div>
 
                   <button type="submit" class="btn btn-success">修改完成</button>
                 </form>
+                <div class="alert alert-warning" role="alert">
+                  注意：若是使用IE瀏覽器者<br/>
+                  日期的輸入格式為：XXXX-XX-XX<br/>
+                  例如：2017-08-04<br/>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default message_close">Close</button>

@@ -285,7 +285,7 @@ class Commodity
             $commodityAmount = $commodityAmount+$Amount;
             return $result = $this->cs->UpdateCommodityAmount($commodityID,$commodityAmount);
         }else if($type=='reduce'){
-            if($commodityAmount>$Amount){
+            if($commodityAmount>=$Amount){
                 $commodityAmount = $commodityAmount-$Amount;
                 return $result = $this->cs->UpdateCommodityAmount($commodityID,$commodityAmount);
             }else{

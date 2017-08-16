@@ -20,11 +20,11 @@
                   </div>
 
                   <div class="form-group">
-                    <label>團購價格</label>
+                    <label>團購價格(必填)</label>
                     <input type="text" class="form-control" name="groupbuy_price" value="{{ $message_data['groupbuyPrice'] }}" placeholder="輸入團購價格">
                   </div>
                   <div class="form-group">
-                    <label>下架時間</label>
+                    <label>下架時間(必填)</label>
                     @if($message_data['offTime']!=null)
                           <?php 
                               $time = preg_split("/ /",$message_data['offTime']);
@@ -37,7 +37,7 @@
                   <div class="row">
                     <div class="col-xs-6">
                       <div class="form-group">
-                        <label>優惠條件(一)</label>
+                        <label>優惠條件(一)(必填)</label>
                         <br/>
                         <label>數量：</label>
                         <input type="text" class="form-control" name="groupbuy_amountA" value="{{ $message_data['groupbuyAmountA'] }}" placeholder="輸入數量">

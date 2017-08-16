@@ -534,7 +534,7 @@ class CommodityManagementController extends Controller
                 );
                 $message_text = "新增成功";
             }catch(\Exception $e){
-                $message_text = "失敗";
+                $message_text = "新增失敗";
                 //$message_text = $e;
             }finally{
                 //return $message_text;
@@ -589,6 +589,14 @@ class CommodityManagementController extends Controller
         
         if($offTime==null){
             $message_text = "下架日期不可為空";
+            return $this->GetCommodity($page_type,$type,$message_text,$message_data);
+        }
+        if($limitedPrice==null){
+            $message_text = "限時限量價格不可為空";
+            return $this->GetCommodity($page_type,$type,$message_text,$message_data);
+        }
+        if($limitedAmount==null){
+            $message_text = "限時限量數量不可為空";
             return $this->GetCommodity($page_type,$type,$message_text,$message_data);
         }
 
