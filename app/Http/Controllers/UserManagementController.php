@@ -37,18 +37,26 @@ class UserManagementController extends Controller
             $this_page = $Request->input('this_page');
             $order_type = $Request->input('order_type');
             $search_text = $Request->input('search_text');
+            $search_key = "%".$search_text."%";
         }
-        $count_page = $this->us->CountInformation($user_type);
-        $count_page = (int)($count_page/12)+1;
-        $start_number = ($this_page-1)*12;
-        $end_number = $this_page*12;
+
+        if($search_text != null){
+            $count_page = $this->us->CountInformation($user_type,$search_key);
+        }else{
+            $count_page = $this->us->CountInformation($user_type);
+        }
+        $count_page = (($count_page%5)==0)?(int)($count_page/5):((int)($count_page/5)+1);
+
+        $start_number = ($this_page-1)*5+1;
+        $end_number = $this_page*5;
         $result = $this->us->UserData(
             $user_type,
             $start_number,
             $end_number,
             $order_type,
-            $search_text
+            $search_key
             );
+
         return view::make('UserManagement',[
             'message_text'=>$message_text,
             'AllInformation'=>$result,
@@ -133,5 +141,40 @@ class UserManagementController extends Controller
         }finally{
             return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
         }
+    }
+
+    public function Search_user(Request $Request,$message_text = null){
+        //return  $Request->All();
+        $user_type = $Request->input('user_type');
+        $order_type = "created_at";
+        $this_page = 1;
+        $search_text = $Request->input('search_text');
+        $search_key = "%".$search_text."%";
+
+        $start_number = ($this_page-1)*5+1;
+        $end_number = $this_page*5;
+
+        $count_page = $this->us->CountInformation($user_type,$search_key);
+        $count_page = (($count_page%5)==0)?(int)($count_page/5):((int)($count_page/5)+1);
+
+        $result = $this->us->UserData(
+            $user_type,
+            $start_number,
+            $end_number,
+            $order_type,
+            $search_key
+        );
+
+        //return $result;
+
+        return view::make('UserManagement',[
+            'message_text'=>$message_text,
+            'AllInformation'=>$result,
+            'user_type'=>$user_type,
+            'search_text'=>$search_text,
+            'this_page'=>$this_page,
+            'order_type'=>$order_type,
+            'count_page'=>$count_page
+        ]);
     }
 }

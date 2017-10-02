@@ -69,13 +69,13 @@ class User
         return $result;
     }
 
-    public function CountInformation($user_type){
+    public function CountInformation($user_type,$search_text= null){
         if($user_type == 'All')
-            $result = $this->us->GetAllMemberCount();
+            $result = $this->us->GetAllMemberCount($search_text);
         else if($user_type == 'Black')
-             $result = $this->us->GetBlackMemberCount();
+             $result = $this->us->GetBlackMemberCount($search_text);
         else if($user_type == 'Apply')
-             $result = $this->us->GetApplyMemberCount();
+             $result = $this->us->GetApplyMemberCount($search_text);
         return $result;
     }
 

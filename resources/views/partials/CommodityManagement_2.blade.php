@@ -235,6 +235,10 @@
             $('.edit_btn').click(function(event) {
                 $(this).prev().submit();
             });
+            $('#thedate').datepicker({
+                dateFormate: 'yy-mm-dd',
+                minDate: 0  , //限制最小日期，從今天開始。過去日期不可選。
+            });
         });
     </script>
     @if(count($message_data))
@@ -330,6 +334,10 @@
             });
             $('.edit_btn').click(function(event) {
                 $(this).prev().submit();
+            });
+            $('#thedate').datepicker({
+                dateFormate: 'yy-mm-dd',
+                minDate: 0  , //限制最小日期，從今天開始。過去日期不可選。
             });
         });
     </script>

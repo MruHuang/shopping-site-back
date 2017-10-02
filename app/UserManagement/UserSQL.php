@@ -134,18 +134,33 @@ class UserSQL
         return $result;
     }
 
-    public function GetAllMemberCount(){
-        return $result = mbSQL::GetAllMember()
-        ->count();
+    public function GetAllMemberCount($search_text=null){
+        if($search_text!=null){
+            return $result = mbSQL::GetAllMember()->LikeSelect($search_text)
+            ->count();  
+        }else{
+            return $result = mbSQL::GetAllMember()
+            ->count();  
+        }
     }
 
-    public function GetBlackMemberCount(){
-        return $result = mbSQL::GetBlackMember()
-        ->count();
+    public function GetBlackMemberCount($search_text=null){
+        if($search_text!=null){
+            return $result = mbSQL::GetBlackMember()->LikeSelect($search_text)
+            ->count();  
+        }else{
+            return $result = mbSQL::GetBlackMember()
+            ->count();  
+        }
     }
 
-    public function GetApplyMemberCount(){
-        return $result = mbSQL::GetApplyMember()
-        ->count();
+    public function GetApplyMemberCount($search_text=null){
+        if($search_text!=null){
+            return $result = mbSQL::GetApplyMember()->LikeSelect($search_text)
+            ->count();  
+        }else{
+            return $result = mbSQL::GetApplyMember()
+            ->count();  
+        }
     }
 }
