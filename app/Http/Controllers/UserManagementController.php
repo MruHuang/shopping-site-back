@@ -31,6 +31,7 @@ class UserManagementController extends Controller
             $order_type = "created_at";
             $this_page = 1;
             $search_text = null;
+            $search_key = null;
 
         }else{
             $user_type = $Request->input('user_type');
