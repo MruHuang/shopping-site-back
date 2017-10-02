@@ -124,7 +124,9 @@
                           <td>{{ $AllInformation[$i]['totalPrice'] }}</td>
                         @endif
                         
-                        @if($AllInformation[$i]['moneyTransferFN']==0)
+                        @if($AllInformation[$i]['checkoutMethod']=='CreditCard')
+                          <td>信用卡</td>
+                        @elseif($AllInformation[$i]['moneyTransferFN']==0)
                           <td>未輸入</td>
                         @else
                           <td>{{ $AllInformation[$i]['moneyTransferFN'] }}</td>
