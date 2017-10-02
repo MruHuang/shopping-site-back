@@ -32,9 +32,15 @@
           <li role="presentation"><a id="Black_btn">黑名單</a></li>
         </ul>
         <div class="panel panel-default" style="border-top:none;">
-            <a class="btn btn-success" id="search_btn" style="float: right; margin: 10px 10px;">搜尋</a>
-            <input type="text" id="search_key"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
-
+            @if($search_text!=null)
+                目前搜尋：{{ $search_text }}
+            @endif
+            <form role="form" method="POST" style="margin: 0px;" action=" {{ route('Search_user') }}">
+                <button class="btn btn-success" type="submit" style="float: right; margin: 10px 10px;">搜尋</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="user_type" value="{{ $user_type }}">
+                <input type="text" id="search_key" name="search_text"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
+            </form>
             <div class="panel-body">
                 @include('partials.UserManagement_1') 
             </div>
@@ -47,8 +53,15 @@
             <li role="presentation"><a id="Black_btn">黑名單</a></li>
         </ul>
         <div class="panel panel-default" style="border-top:none;">
-            <a class="btn btn-success" id="search_btn" style="float: right; margin: 10px 10px;">搜尋</a>
-            <input type="text" id="search_key"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
+            @if($search_text!=null)
+                目前搜尋：{{ $search_text }}
+            @endif
+            <form role="form" method="POST" style="margin: 0px;" action=" {{ route('Search_user') }}">
+                <button class="btn btn-success" type="submit" style="float: right; margin: 10px 10px;">搜尋</button>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="user_type" value="{{ $user_type }}">
+                <input type="text" id="search_key" name="search_text"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
+            </form>
 
             <div class="panel-body">
                 @include('partials.UserManagement_2') 
@@ -62,8 +75,15 @@
                 <li role="presentation" class="active"><a id="Black_btn">黑名單</a></li>
             </ul>
             <div class="panel panel-default" style="border-top:none;">
-                <a class="btn btn-success" id="search_btn" style="float: right; margin: 10px 10px;">搜尋</a>
-                <input type="text" id="search_key"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
+                @if($search_text!=null)
+                    目前搜尋：{{ $search_text }}
+                @endif
+                <form role="form" method="POST" style="margin: 0px;" action=" {{ route('Search_user') }}">
+                    <button class="btn btn-success" type="submit" style="float: right; margin: 10px 10px;">搜尋</button>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="user_type" value="{{ $user_type }}">
+                    <input type="text" id="search_key" name="search_text"  class="form-control" style="width: 20%; margin:10px 10px; float: right;" placeholder="搜尋">
+                </form>
 
                 <div class="panel-body">
                     @include('partials.UserManagement_3') 
