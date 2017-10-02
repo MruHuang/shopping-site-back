@@ -29,9 +29,9 @@
                           <?php 
                               $time = preg_split("/ /",$message_data['offTime']);
                           ?>
-                          <input type="date" class="form-control" name="offTime" value="{{ $time[0] }}">
+                          <input id="thedate" class="form-control" type="text" name="offTime" value="{{ $time[0] }}"/>
                     @else
-                          <input type="date" class="form-control" name="offTime">
+                          <input id="thedate" class="form-control" type="text" name="offTime" />
                     @endif
                   </div>
                   <div class="row">

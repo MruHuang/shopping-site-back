@@ -13,13 +13,15 @@
     <div style="margin-top: 10px;"></div>
     <div id="date_start_area" style="display:none;">
         <label id="date_start_title">起始日期</label>
-        <input type="date" class="form-control" id ="date_start" name="date_start" min="2000-01-01" max="9999-12-31">
+        {{--  <input type="date" class="form-control" id ="date_start" name="date_start" min="2000-01-01" max="9999-12-31">  --}}
+        <input id="thedate" class="form-control" type="text" id ="date_start" name="date_start" />
     </div>
     
     <div style="margin-top: 10px;"></div>
     <div id="date_end_area" style="display:none;">
         <label id="date_end_title">結束日期</label>
-        <input type="date" class="form-control" id ="date_end" name="date_end" min="2000-01-01" max="9999-12-13">
+        {{--  <input type="date" class="form-control" id ="date_end" name="date_end" min="2000-01-01" max="9999-12-13">  --}}
+        <input id="thedate2" class="form-control" type="text" id ="date_end" name="date_end" />
     </div>
     <div style="margin-top: 10px;"></div>
     <button class="btn btn-info register_button_style" style="float: right; margin-top: 20px;" type="submit" id="submit_btn" >下載</button>
@@ -42,6 +44,14 @@
             }else{
                 $('#print_report_area').submit();
             }
+        });
+        $('#thedate').datepicker({
+            dateFormate: 'yy-mm-dd',
+            maxDate: 0  , //限制最小日期，從今天開始。過去日期不可選。
+        });
+        $('#thedate2').datepicker({
+            dateFormate: 'yy-mm-dd',
+            maxDate: 0  , //限制最小日期，從今天開始。過去日期不可選。
         });
     });
 
