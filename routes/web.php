@@ -74,6 +74,11 @@ Route::group(['prefix'=>'user'],function(){
 		'as'=>'Search_user',
 		'uses'=>'UserManagementController@Search_user'
 	]);
+
+	Route::post('UpdateMemberData',[
+		'as'=>'UpdateMemberData',
+		'uses'=>'UserManagementController@UpdateMemberData'
+	]);
 });
 
 Route::group(['prefix'=>'commodity'],function(){

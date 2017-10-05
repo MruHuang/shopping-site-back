@@ -145,13 +145,41 @@
         $('#GetUserData').submit();
     });
 
-    $('.user_integral').click(function(event) {
+    {{--  $('.user_integral').click(function(event) {
+    	$(this).parent().next().show();
+    });
+
+    $('.update_user_Account').click(function(event) {
     	$(this).parent().next().show();
     });
     
     $('.user_cancel').click(function(event) {
         $(this).parent().next().show();
+    });  --}}
+
+    $('.update_memberData_btn').click(function(event) {
+        var memberID = $(this).attr('data-memberID');
+
+        var memberAccount = $('#memberAccount-'+memberID).text();
+        var memberName = $('#memberName-'+memberID).text();
+        var memberLineid = $('#memberLineid-'+memberID).text();
+        var memberPhone = $('#memberPhone-'+memberID).text();
+        var memberIntegral = $('#memberIntegral-'+memberID).text();
+        var memberCancel = $('#memberCancel-'+memberID).text(); 
+
+        $('#memberID').val(memberID);
+        $('#memberAccount').val(memberAccount);
+        $('#memberName').val(memberName);
+        $('#memberLineid').val(memberLineid);
+        $('#memberPhone').val(memberPhone);
+        $('#memberIntegral').val(memberIntegral);
+        $('#memberCancel').val(memberCancel); 
+        
+        console.log('#memberAccount-'+memberID);
+        console.log(memberAccount);
+        $('#UpdateMemberDataMessage').show();
     });
+    
 </script>
 @stop
 
