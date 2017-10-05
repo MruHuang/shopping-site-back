@@ -98,4 +98,24 @@ class User
             $Cancel
         );
     }
+
+    public function UpdateMemberData(
+        $memberID,
+        $memberAccount,
+        $memberName,
+        $memberLineid,
+        $memberPhone,
+        $memberIntegral,
+        $memberCancel
+    ){
+        return $result = $this->us->UpdateMemberData(
+            $memberID,
+            $memberAccount,
+            $memberName,
+            $memberLineid,
+            $memberPhone,
+            $memberIntegral,
+            $memberCancel
+        );
+    }
 }

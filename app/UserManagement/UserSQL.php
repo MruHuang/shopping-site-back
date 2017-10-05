@@ -122,6 +122,27 @@ class UserSQL
         return true;
     }
 
+    public function UpdateMemberData(
+        $memberID,
+        $memberAccount,
+        $memberName,
+        $memberLineid,
+        $memberPhone,
+        $memberIntegral,
+        $memberCancel
+    ){
+        $result = mbSQL::CheckMemberID($memberID)
+        ->update([
+            'memberAccount'=>$memberAccount,
+            'memberName'=>$memberName,
+            'memberLineid'=>$memberLineid,
+            'memberPhone'=>$memberPhone,
+            'memberIntegral'=>$memberIntegral,
+            'memberCancel'=>$memberCancel
+        ]);
+        return true;
+    }
+
     public function DeleteMember($id){
         $result = mbSQL::CheckMemberID($id)
         ->delete();

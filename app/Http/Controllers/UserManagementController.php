@@ -31,6 +31,7 @@ class UserManagementController extends Controller
             $order_type = "created_at";
             $this_page = 1;
             $search_text = null;
+            $search_key = null;
 
         }else{
             $user_type = $Request->input('user_type');
@@ -56,7 +57,7 @@ class UserManagementController extends Controller
             $order_type,
             $search_key
             );
-
+        //return $result;
         return view::make('UserManagement',[
             'message_text'=>$message_text,
             'AllInformation'=>$result,
@@ -87,35 +88,65 @@ class UserManagementController extends Controller
         }
     }
 
-    public function PostUpdateUserData(Request $Request){
-        //return $Request->all();
-        $memberID = $Request->input('memberID');
-        $action_type = $Request->input('action_type');
-        $user_type = $Request->input('user_type');
-        $message_text =null;
-        try{
-            $result = $this->us->UpdateMember(
-                $memberID,
-                $action_type,
-                $user_type
-            );
-        }catch(\Exception $e){
-            $message_text ="更改狀態失敗。";
-        }finally{
-            return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
-        }
-    }
+    // public function PostUpdateUserData(Request $Request){
+    //     //return $Request->all();
+    //     $memberID = $Request->input('memberID');
+    //     $action_type = $Request->input('action_type');
+    //     $user_type = $Request->input('user_type');
+    //     $message_text =null;
+    //     try{
+    //         $result = $this->us->UpdateMember(
+    //             $memberID,
+    //             $action_type,
+    //             $user_type
+    //         );
+    //     }catch(\Exception $e){
+    //         $message_text ="更改狀態失敗。";
+    //     }finally{
+    //         return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
+    //     }
+    // }
 
-    public function UpdateUserIntegral(Request $Request){
+    // public function UpdateUserIntegral(Request $Request){
+    //     //return  $Request->All();
+    //     $message_text = null;
+    //     $user_type = $Request->input('user_type');
+    //     $memberID = $Request->input('memberID');
+    //     $memberIntegral = $Request->input('memberIntegral');
+    //     try{
+    //         $result = $this->us->UpdateMemberIntegral(
+    //             $memberID,
+    //             $memberIntegral
+    //         );
+    //         $message_text = "更改成功";
+    //     }catch(\Exception $e){
+    //         $message_text = "更改失敗";
+    //     }finally{
+    //         return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
+    //     }
+    // }
+
+    public function UpdateMemberData(Request $Request){
         //return  $Request->All();
         $message_text = null;
         $user_type = $Request->input('user_type');
         $memberID = $Request->input('memberID');
+        $memberAccount = $Request->input('memberAccount');
+        $memberName = $Request->input('memberName');
+        $memberLineid = $Request->input('memberLineid');
+        $memberPhone = $Request->input('memberPhone');
         $memberIntegral = $Request->input('memberIntegral');
+        $memberCancel = $Request->input('memberCancel');
+
         try{
-            $result = $this->us->UpdateMemberIntegral(
+            $result = $this->us->UpdateMemberData(
                 $memberID,
-                $memberIntegral
+                $memberAccount,
+                $memberName,
+                $memberLineid,
+                $memberPhone,
+                $memberIntegral,
+                $memberCancel
             );
             $message_text = "更改成功";
         }catch(\Exception $e){
@@ -124,6 +155,7 @@ class UserManagementController extends Controller
             return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
         }
     }
+
     public function UpdateUserCancel(Request $Request){
     	//return  $Request->All();
     	$message_text = null;
