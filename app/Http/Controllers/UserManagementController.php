@@ -88,24 +88,24 @@ class UserManagementController extends Controller
         }
     }
 
-    // public function PostUpdateUserData(Request $Request){
-    //     //return $Request->all();
-    //     $memberID = $Request->input('memberID');
-    //     $action_type = $Request->input('action_type');
-    //     $user_type = $Request->input('user_type');
-    //     $message_text =null;
-    //     try{
-    //         $result = $this->us->UpdateMember(
-    //             $memberID,
-    //             $action_type,
-    //             $user_type
-    //         );
-    //     }catch(\Exception $e){
-    //         $message_text ="更改狀態失敗。";
-    //     }finally{
-    //         return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
-    //     }
-    // }
+    public function PostUpdateUserData(Request $Request){
+        //return $Request->all();
+        $memberID = $Request->input('memberID');
+        $action_type = $Request->input('action_type');
+        $user_type = $Request->input('user_type');
+        $message_text =null;
+        try{
+            $result = $this->us->UpdateMember(
+                $memberID,
+                $action_type,
+                $user_type
+            );
+        }catch(\Exception $e){
+            $message_text ="更改狀態失敗。";
+        }finally{
+            return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
+        }
+    }
 
     // public function UpdateUserIntegral(Request $Request){
     //     //return  $Request->All();
