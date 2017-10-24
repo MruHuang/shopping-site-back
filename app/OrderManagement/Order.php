@@ -342,4 +342,20 @@ class Order
         $result = $this->os->MemberData($memberID);
         return $result;
     }
+
+    public function UpdateOrderData(
+        $orderID,
+        $recipient,
+        $checkoutMethod,
+        $moneyTransferFN,
+        $deliveryAdd
+    ){
+        $result = $this->os->UpdateOrderData( 
+            $orderID,
+            $recipient,
+            $checkoutMethod,
+            $moneyTransferFN,
+            $deliveryAdd);
+        return $result;
+    }
 }

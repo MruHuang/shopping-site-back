@@ -399,4 +399,19 @@ class OrderSQL
         $result = oddSQL::GetOrderDetailed($commodityID)
         ->update(['buyNum'=>$totalAmount,'buyPrice'=>$finallyPrice]);
     }
+
+    public function UpdateOrderData(
+        $orderID,
+        $recipient,
+        $checkoutMethod,
+        $moneyTransferFN,
+        $deliveryAdd
+    ){
+        $result = odSQL::CheckOrderID($orderID)
+        ->update(['recipient'=>$recipient,
+                  'checkoutMethod'=>$checkoutMethod,
+                  'moneyTransferFN'=>$moneyTransferFN,
+                  'deliveryAdd'=>$deliveryAdd]);
+        return $result;
+    }
 }

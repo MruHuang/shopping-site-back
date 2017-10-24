@@ -246,6 +246,11 @@ Route::group(['prefix'=>'order'],function(){
 		'uses'=>'OrderManagementController@UpdateOrder'
 	]);
 
+	Route::post('UpdateOrderData',[
+		'as'=>'UpdateOrderData',
+		'uses'=>'OrderManagementController@UpdateOrderData'
+	]);
+
 	Route::get('SingleOrder/{orderID}/{orderState}/{this_page}/{order_type}',[
 		'as'=>'SingleOrder',
 		'uses'=>'OrderManagementController@SingleOrder'

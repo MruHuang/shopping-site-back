@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\OrderManagement\Order as OD;
 use View;
+use Log;
 
 class OrderManagementController extends Controller
 {
@@ -99,6 +100,40 @@ class OrderManagementController extends Controller
 
     public function GetOrderNumber($type){
         return $result = $this->od->OrderDataNumber($type);
+    }
+
+    public function UpdateOrderData(Request $Request){
+        //return $Request->all();
+        $orderID = $Request->input('orderID');
+        $recipient = $Request->input('recipient');
+        $checkoutMethod = $Request->input('checkoutMethod');
+        $moneyTransferFN = $Request->input('moneyTransferFN');
+        $deliveryAdd = $Request->input('deliveryAdd');
+
+        $order_state = $Request->input('order_state');
+        $this_page = $Request->input('this_page');
+        $order_type = $Request->input('order_type');
+        $message_text = "";
+        try{
+            Log::info('賣家修改前:');
+            Log::info($this->od->SingleOrder($orderID));
+            $this->od->UpdateOrderData(
+                $orderID,
+                $recipient,
+                $checkoutMethod,
+                $moneyTransferFN,
+                $deliveryAdd
+            );
+            $message_text = "訂單修改成功";
+            Log::info('賣家修改後:');
+            Log::info($this->od->SingleOrder($orderID));
+        }catch(\Exception $e){
+            $message_text = "訂單修改失敗";
+            $message_text = $e;
+        }finally{
+            return $this->GetOrder($order_state,$this_page,$order_type,$message_text,null,null);
+        }
+
     }
 }
 
