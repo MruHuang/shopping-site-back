@@ -500,6 +500,7 @@ class CommodityManagementController extends Controller
         $commodityID = $Request->input('commodity_id');
         $groupbuy_price = $Request->input('groupbuy_price');
         $offTime = $Request->input('offTime');
+        $offTime =  date("Y-m-d",strtotime($offTime."+1 day")); 
         $groupbuy_amountA = $Request->input('groupbuy_amountA');
         $groupbuy_priceA = $Request->input('groupbuy_priceA');
         $groupbuy_amountB = $Request->input('groupbuy_amountB');
@@ -587,6 +588,8 @@ class CommodityManagementController extends Controller
         $message_data = null;
         $message_text = null;
         
+        $offTime =  date("Y-m-d",strtotime($offTime."+1 day")); 
+
         if($offTime==null){
             $message_text = "下架日期不可為空";
             return $this->GetCommodity($page_type,$type,$message_text,$message_data);
