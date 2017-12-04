@@ -5,7 +5,7 @@ use Log;
 use App\Model\groupbuy_commodity;
 use App\CommodityManagement\Commodity as CD;
 use App\OrderManagement\Order as OD;
-
+use DateTime;
 class AutoUnshelveGroupbuy
 {
 
@@ -16,11 +16,11 @@ class AutoUnshelveGroupbuy
 
 	public static function unshelveGroupbuy(){
 		$groupbuyCommodityData = groupbuy_commodity::CheckOnShelves()->get();
-        $nowTime = date('Y-m-d H:i:s');
+        $nowTime = date('Y-m-d');
         $message_text = null;
         for ($i=0; $i <count($groupbuyCommodityData) ; $i++) {
         	if($groupbuyCommodityData[$i]['offTime']!=null){
-        		if(strtotime($groupbuyCommodityData[$i]['offTime'])<strtotime($nowTime)){
+        		if($groupbuyCommodityData[$i]['offTime'] < $nowTime){
 	                //Log::info(strtotime($groupbuyCommodityData[$i]['offTime']).'-----'.strtotime($nowTime));
 	                //Log::info('下架');
 	                Log::info($groupbuyCommodityData[$i]['groupbuyID']);
