@@ -166,6 +166,7 @@
         var memberPhone = $('#memberPhone-'+memberID).text();
         var memberIntegral = $('#memberIntegral-'+memberID).text();
         var memberCancel = $('#memberCancel-'+memberID).text(); 
+        var memberEmail = $('#memberEmail-'+memberID).text(); 
 
         $('#memberID').val(memberID);
         $('#memberAccount').val(memberAccount);
@@ -174,7 +175,7 @@
         $('#memberPhone').val(memberPhone);
         $('#memberIntegral').val(memberIntegral);
         $('#memberCancel').val(memberCancel); 
-        
+        $('#memberEmail').val(memberEmail);
         console.log('#memberAccount-'+memberID);
         console.log(memberAccount);
         $('#UpdateMemberDataMessage').show();

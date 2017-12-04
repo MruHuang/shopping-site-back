@@ -124,21 +124,17 @@ class UserSQL
 
     public function UpdateMemberData(
         $memberID,
-        $memberAccount,
         $memberName,
-        $memberLineid,
-        $memberPhone,
         $memberIntegral,
-        $memberCancel
+        $memberCancel,
+        $memberEmail
     ){
         $result = mbSQL::CheckMemberID($memberID)
         ->update([
-            'memberAccount'=>$memberAccount,
             'memberName'=>$memberName,
-            'memberLineid'=>$memberLineid,
-            'memberPhone'=>$memberPhone,
             'memberIntegral'=>$memberIntegral,
-            'memberCancel'=>$memberCancel
+            'memberCancel'=>$memberCancel,
+            'memberEmail'=>$memberEmail
         ]);
         return true;
     }

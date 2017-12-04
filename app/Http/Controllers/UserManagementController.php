@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\UserManagement\User as US;
 use View;
+use Log;
 
 class UserManagementController extends Controller
 {
@@ -127,29 +128,26 @@ class UserManagementController extends Controller
     // }
 
     public function UpdateMemberData(Request $Request){
-        //return  $Request->All();
-        $message_text = null;
+        // return  $Request->All();
+        $message_text = "123";
         $user_type = $Request->input('user_type');
         $memberID = $Request->input('memberID');
-        $memberAccount = $Request->input('memberAccount');
         $memberName = $Request->input('memberName');
-        $memberLineid = $Request->input('memberLineid');
-        $memberPhone = $Request->input('memberPhone');
+        $memberEmail = $Request->input('memberEmail');
         $memberIntegral = $Request->input('memberIntegral');
         $memberCancel = $Request->input('memberCancel');
-
+       
         try{
             $result = $this->us->UpdateMemberData(
                 $memberID,
-                $memberAccount,
                 $memberName,
-                $memberLineid,
-                $memberPhone,
                 $memberIntegral,
-                $memberCancel
+                $memberCancel,
+                $memberEmail
             );
             $message_text = "更改成功";
         }catch(\Exception $e){
+            Log::info($e);
             $message_text = "更改失敗";
         }finally{
             return  redirect()->route('loginUserData',['user_type'=>$user_type,'message_text'=>$message_text]);
