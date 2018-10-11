@@ -576,6 +576,7 @@ class CommodityManagementController extends Controller
     }
     
     public function UpdateLimiteddata(Request $Request){
+        Log::info($Request->all());
         $page_type = $Request->input('page_type');
         $type = $Request->input('type');
         $post_type = $Request->input('post_type');
