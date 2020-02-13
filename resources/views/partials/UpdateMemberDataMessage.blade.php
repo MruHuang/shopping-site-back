@@ -13,7 +13,7 @@
                     <input type="hidden" name="memberID" id='memberID'>
                         <div class="form-group">
                             <label>會員帳號</label>
-                            <input class="form-control" type="text" id='memberAccount' name='memberAccount'>
+                            <input class="form-control" type="text" id='memberAccount' name='memberAccount' disabled="disabled">
                         </div>
                         <div class="form-group">
                             <label>會員名稱</label>
@@ -21,11 +21,15 @@
                         </div>
                         <div class="form-group">
                             <label>會員LineID</label>
-                            <input class="form-control" type="text" id='memberLineid' name='memberLineid'>
+                            <input class="form-control" type="text" id='memberLineid' name='memberLineid' disabled="disabled">
                         </div>
                         <div class="form-group">
                             <label>會員手機</label>
-                            <input class="form-control" type="text" id='memberPhone' name='memberPhone'>
+                            <input class="form-control" type="text" id='memberPhone' name='memberPhone' disabled="disabled">
+                        </div>
+                        <div class="form-group">
+                            <label>會員信箱</label>
+                            <input class="form-control" type="email" id='memberEmail' name='memberEmail'>
                         </div>
                         <div class="form-group">
                             <label>會員積分</label>

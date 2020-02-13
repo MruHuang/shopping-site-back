@@ -114,6 +114,12 @@ class OrderManagementController extends Controller
         $this_page = $Request->input('this_page');
         $order_type = $Request->input('order_type');
         $message_text = "";
+        
+        if($recipient==null||$moneyTransferFN==null||$deliveryAdd==null){
+            $message_text = "資料不完全";
+            return $this->GetOrder($order_state,$this_page,$order_type,$message_text,null,null);
+        }
+
         try{
             Log::info('賣家修改前:');
             Log::info($this->od->SingleOrder($orderID));

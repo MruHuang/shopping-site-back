@@ -1,1 +1,1 @@
-call php C:\Shopping-site-Laravel\Laravel_Back\artisan schedule:run
+call php Z:\Bitbucket\shopping-site-back\artisan schedule:run

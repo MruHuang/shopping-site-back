@@ -101,21 +101,17 @@ class User
 
     public function UpdateMemberData(
         $memberID,
-        $memberAccount,
         $memberName,
-        $memberLineid,
-        $memberPhone,
         $memberIntegral,
-        $memberCancel
+        $memberCancel,
+        $memberEmail
     ){
         return $result = $this->us->UpdateMemberData(
             $memberID,
-            $memberAccount,
             $memberName,
-            $memberLineid,
-            $memberPhone,
             $memberIntegral,
-            $memberCancel
+            $memberCancel,
+            $memberEmail
         );
     }
 }

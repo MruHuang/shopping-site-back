@@ -13,6 +13,7 @@
     <?php $MAX = count($AllInformation) ?>
     @for($i=0;$i<$MAX;$i++)
         <tr>
+            <td class="text-center" id="memberEmail-{{$AllInformation[$i]['memberID']}}" style="display:none;" >{{$AllInformation[$i]['memberEmail']}}</td>
             <td class="text-center" id="memberAccount-{{$AllInformation[$i]['memberID']}}" >{{$AllInformation[$i]['memberAccount']}}</td>
             <td class="text-center" id="memberName-{{$AllInformation[$i]['memberID']}}" >{{$AllInformation[$i]['memberName']}}</td>
             <td class="text-center" id="memberPhone-{{$AllInformation[$i]['memberID']}}" >{{$AllInformation[$i]['memberPhone']}}</td>
